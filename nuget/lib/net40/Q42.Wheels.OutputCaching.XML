@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Q42.Wheels.OutputCaching</name>
+    </assembly>
+    <members>
+        <member name="T:Q42.Wheels.OutputCaching.AnonymousOnlyOutputCacheAttribute">
+            <summary>
+            This outputcache overrides the default OutputCache attribute. 
+            It only returns the regular outputcache when we are not logged in
+            on the website.
+            This attribute is to be used together with 
+            <see cref="!:NegenTwee.Website.Attributes.AuthenticatedOnlyDonutOutputCache"/> 
+            to have the full cached experience (logged in and not-logged in)
+            </summary>
+        </member>
+        <member name="M:Q42.Wheels.OutputCaching.AnonymousOnlyOutputCacheAttribute.IgnoreAuthenticated(System.Web.HttpContext,System.Object,System.Web.HttpValidationStatus@)">
+            <summary>
+            This method is called each time when cached page is going to be 
+            served and ensures that cache is ignored for authenticated users.
+            </summary>
+            <param name="context"></param>
+            <param name="data"></param>
+            <param name="validationStatus"></param>
+        </member>
+        <member name="T:Q42.Wheels.OutputCaching.AuthenticatedOnlyDonutOutputCacheAttribute">
+            <summary>
+            This DonutOutputCache only uses cache if HttpContext.User.Identity.IsAuthenticated
+            </summary>
+        </member>
+        <member name="T:NegenTwee.Website.Attributes.OutputCacheCompatibleRequireHttpsAttribute">
+            <summary>
+            This RequireHttps attribute is to be used in conjunction with OutputCaching because 
+            otherwise the HTTPS result is output cached also for non-HTTPS requests.
+            </summary>
+            <remarks>
+            http://stackoverflow.com/a/5604830/106909
+            </remarks>
+        </member>
+    </members>
+</doc>
